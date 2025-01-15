@@ -13,6 +13,10 @@ class ModelService(BentoService):
     @api(input=DataframeInput(), batch=True)
     def predict(self, df):
         return self.artifacts.model.predict(df.values)
+        
+    @api(input=DataframeInput(), batch=True)
+    def score(self, df, y):
+        return self.artifacts.model.score(df.values,y.values)
     
     @api(input=JsonInput(), batch=False)
     def test_data(self, *args): 
